@@ -36,7 +36,6 @@ public class RepairDaoImpl implements RepairDao {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
 
 	@Override
@@ -47,10 +46,27 @@ public class RepairDaoImpl implements RepairDao {
 
 	@Override
 	public boolean updateRepair(Repair repair) {
-		// TODO Auto-generated method stub
-		return false;
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("update repair_info ");
+		sql.append("set r_name=?,r_phone=?,r_id=?,r_starttime=? ");
+		sql.append("where r_no=? ");
+		try {
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			pst.setString(1, repair.getName());
+			pst.setString(2, repair.getPhone());
+			pst.setString(3, repair.getId());
+			java.sql.Date startTime = new java.sql.Date(repair.getStartTime().getTime());
+			pst.setDate(4, startTime);
+			pst.setInt(5, repair.getNo());
+			pst.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-
+	
 	@Override
 	public List<Repair> getRepairs(int start, int number) {
 		List<Repair> array = new ArrayList<Repair>();

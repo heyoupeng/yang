@@ -33,7 +33,6 @@ public class FunctionDaoImpl implements FunctionDao{
 		}
 		return json;
 	}
-
 	
 	public JSONArray getRoleFunctions(int parentId, String fids) {
 		JSONArray userFuncs = getFuncsByParentId(parentId, fids);

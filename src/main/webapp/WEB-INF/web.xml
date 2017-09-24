@@ -61,4 +61,15 @@
 		<servlet-name>insertRepair</servlet-name>
 		<url-pattern>/insertRepair</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 修改维修人员 -->
+	<servlet>
+		<servlet-name>updateRepair</servlet-name>
+		<servlet-class>com.yh.action.UpdateRepair</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateRepair</servlet-name>
+		<url-pattern>/updateRepair</url-pattern>
+	</servlet-mapping>
+		
 </web-app>

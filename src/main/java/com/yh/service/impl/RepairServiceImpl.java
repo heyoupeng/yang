@@ -24,8 +24,7 @@ public class RepairServiceImpl implements RepairService {
 
 	@Override
 	public boolean updateRepair(Repair repair) {
-		// TODO Auto-generated method stub
-		return false;
+		return rd.updateRepair(repair);
 	}
 
 	@Override

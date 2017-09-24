@@ -91,14 +91,14 @@
 					$("#inputForm").form({
 						url : 'insertRepair',
 						success : function(data) {
-							//alert(data);
-							if(data.state=="400"){
+							var msg=eval('('+data+')');//将获得的信息变为obj
+							if(msg.state=="200"){
 								$.messager.alert('提示','添加成功','info',function() {
 									$('#inputForm').form('clear');
 									$('#insertWindow').window('close');
 									$('#repairMessages').datagrid('reload');
 								});
-							}else if(data.state=="200"){
+							}else if(msg.state=="400"){
 								$.messager.alert('提示','添加失败','info',function() {
 									$('#inputForm').form('clear');
 									$('#insertWindow').window('close');
