@@ -42,4 +42,23 @@
 		<url-pattern>/getRoleFunctions</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 获得datagrid格式的维修人员信息 -->
+		<servlet>
+		<servlet-name>getRepairs</servlet-name>
+		<servlet-class>com.yh.action.GetDatagridRepairs</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getRepairs</servlet-name>
+		<url-pattern>/getRepairs</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 添加维修人员 -->
+	<servlet>
+		<servlet-name>insertRepair</servlet-name>
+		<servlet-class>com.yh.action.InsertRepair</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>insertRepair</servlet-name>
+		<url-pattern>/insertRepair</url-pattern>
+	</servlet-mapping>
 </web-app>
