@@ -28,13 +28,11 @@ public class LoginListener implements HttpSessionAttributeListener {
 				HttpSession oldSession = map.get(id);//获得存在Map中的session
 				if (oldSession.getId().equals(thisSession.getId()) == false) {//如果不是同一个
 					thisSession.removeAttribute("user");//清空当前session的user值，阻止登录
-					thisSession.setAttribute("loginMessage", "请勿同时在多处登录");
 				}
 			} else {
 				map.put(id, thisSession);
 			}
 		}
-
 	}
 
 	@Override
