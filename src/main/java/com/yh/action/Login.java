@@ -29,7 +29,12 @@ public class Login extends HttpServlet {
 		String name = req.getParameter("username");
 		String password = req.getParameter("password");
 		JSONObject obj = new JSONObject();
-		if (accountService.volicateAccount(name, password, rid)) {
+		Date islock = accountService.isLocked(name, rid);
+		if (islock != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			obj.put("state", "402");
+			obj.put("unLocktime", sdf.format(islock));
+		} else if (accountService.volicateAccount(name, password, rid)) {
 			obj.put("state", "200");// 验证正确
 			Account acc = new Account(name, password, Integer.parseInt(rid));
 			HttpSession session = req.getSession();
