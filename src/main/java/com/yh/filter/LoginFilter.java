@@ -16,7 +16,6 @@ public class LoginFilter implements Filter {
 
 	public void destroy() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)

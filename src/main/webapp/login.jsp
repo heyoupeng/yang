@@ -52,7 +52,7 @@
 			editable : false,
 			height : 30
 		});
-		//配置表单
+		//配置表单（无，直接通过异步请求进行判断）
 		$('#loginForm').form({
 			url : 'login',
 			onSubmit : function() {
@@ -83,8 +83,10 @@
 							location.href = 'main.jsp';
 						} else if (data.state == "400") {
 							$.messager.alert('提示', '帐号,密码或角色错误');
-						} else if (data.state = "401") {
+						} else if (data.state == "401") {
 							$.messager.alert('提示', '帐号已在别处登录，请勿重复登录');
+						} else if(data.state=="402"){
+							$.messager.alert('提示', '错误次数过多，请在'+data.unLocktime+'后再试');
 						} else {
 							$.messager.alert('提示', '未知错误');
 						}
@@ -92,7 +94,6 @@
 				});//end ajax
 			}//end onClick
 		});
-
 	});
 </script>
 <body>
