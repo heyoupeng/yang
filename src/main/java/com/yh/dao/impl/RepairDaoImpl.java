@@ -66,7 +66,7 @@ public class RepairDaoImpl implements RepairDao {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public List<Repair> getRepairs(int start, int number) {
 		List<Repair> array = new ArrayList<Repair>();
@@ -121,6 +121,39 @@ public class RepairDaoImpl implements RepairDao {
 			e.printStackTrace();
 		}
 		return sum;
+	}
+
+	@Override
+	public boolean deleteRepairs(int[] no) {
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from repair_info ");
+		sql.append("where r_no=? ");
+		try {
+			con.setAutoCommit(false);
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			for (int i = 0; i < no.length; i++) {
+				pst.setInt(1, no[i]);
+				pst.addBatch();
+			}
+			pst.executeBatch();
+			con.commit();
+			con.setAutoCommit(true);
+			return true;
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		try {
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

@@ -20,6 +20,12 @@ public interface RepairDao {
 	 */
 	public boolean deleteRepair(Repair repair);
 	/**
+	 * 删除维修人员信息
+	 * @param no   编号组
+	 * @return
+	 */
+	public boolean deleteRepairs(int[] no);
+	/**
 	 * 更新维修人员信息
 	 * @param repair
 	 * @return

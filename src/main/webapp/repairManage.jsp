@@ -78,16 +78,11 @@
 					$("#submitButton").linkbutton({
 						iconCls : 'icon-ok',
 						onClick : function() {
-							//var name=$('#inputname').textbox('getText');
-							//var sex=$('#inputsex').textbox('getText');
-							//var age=$('#inputage').textbox('getText');
-							//if(name==''||sex==''||age==''){
-								//$.messager.alert('警告','姓名、性别、年龄不能为空');
-							//}else{
-								$('#inputForm').form('submit');
-							//}
+							//缺判断的正则表达式
+							$('#inputForm').form('submit');
 						}
 					});	
+					//为提交信息窗口绑定添加事件
 					$("#inputForm").form({
 						url : 'insertRepair',
 						success : function(data) {
@@ -121,6 +116,7 @@
 				handler : function() {
 					var rows = $('#repairMessages').datagrid('getSelections');
 					if(rows.length==1){
+						//为提交信息窗口绑定更新事件
 						$("#inputForm").form({
 							url : 'updateRepair',
 							success : function(data) {
@@ -161,23 +157,27 @@
 				text : '删除',
 				handler : function() {
 					var rows = $('#repairMessages').datagrid('getSelections');
-					var ids = [];
+					var no = [];
 					for (var i = 0; i < rows.length; i++) {
-						ids.push(rows[i].id);
+						no.push(rows[i].no);
 					}
 					$.messager.confirm('确认','您确认想要删除记录吗？',function(r) {
 						if (r) {
 							$.ajax({
 								url : 'deleteRepairs',
 								type : 'post',
-								dataType : 'text',
+								dataType : 'json',
 								data : {
-									'ids' : ids
+									'no' : no
 								},
 								success:function(data) {
-									$.messager.alert('提示','成功','info',function() {
+									if(data.state=="200"){
 										$('#repairMessages').datagrid('reload');
-									});
+										$.messager.alert('提示','删除成功');
+									}else if(data.state=="400"){
+										$.messager.alert('提示','删除失败');
+									}
+									
 								}
 							});
 						}

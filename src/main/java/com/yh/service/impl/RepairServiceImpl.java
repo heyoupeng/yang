@@ -36,4 +36,13 @@ public class RepairServiceImpl implements RepairService {
 		return obj;
 	}
 
+	@Override
+	public boolean deleteRepairs(String[] no) {
+		int[] intNo=new int[no.length];
+		for(int i=0;i<no.length;i++){
+			intNo[i]=Integer.parseInt(no[i]);
+		}
+		return rd.deleteRepairs(intNo);
+	}
+
 }
