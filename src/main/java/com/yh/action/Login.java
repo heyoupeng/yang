@@ -2,17 +2,14 @@ package com.yh.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.yh.model.Account;
 import com.yh.service.AccountService;
 import com.yh.service.impl.AccountServiceImpl;
-
 import net.sf.json.JSONObject;
 
 public class Login extends HttpServlet{
@@ -21,7 +18,6 @@ public class Login extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
 	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String rid=req.getParameter("rid");
@@ -29,15 +25,17 @@ public class Login extends HttpServlet{
 		String password=req.getParameter("password");
 		JSONObject obj=new JSONObject();
 		if(accountService.volicateAccount(name, password, rid)){
-			obj.put("state", "200");
+			obj.put("state", "200");//验证正确
 			Account acc=new Account(name,password,Integer.parseInt(rid));
 			HttpSession session=req.getSession();
 			session.setAttribute("user", acc);
+			if(session.getAttribute("user")==null){//在其他地方有登录，被清除
+				obj.put("state", "401");//已有其他地方登录
+			}
 		}else{
-			obj.put("state", "400");
+			obj.put("state", "400");//帐号密码错误
 		}
 		PrintWriter pw=resp.getWriter();
 		pw.write(obj.toString());
-		
 	}
 }

@@ -18,6 +18,8 @@
 <script type="text/javascript" src="js/easyui-lang-zh_CN.js"></script>
 </head>
 <script type="text/javascript">
+	if (window != top)
+		top.location.href = location.href;
 	$(function() {
 		//登录窗口
 		$('#loginWindow').window({
@@ -41,53 +43,56 @@
 			prompt : '密码',
 			height : 40
 		})
-		
-		
+
 		//角色
-		$('#role').combobox({    
-		    url:'getAllRoles',    
-		    valueField:'id',
-		    textField:'text',
-		    editable:false,
+		$('#role').combobox({
+			url : 'getAllRoles',
+			valueField : 'id',
+			textField : 'text',
+			editable : false,
 			height : 30
 		});
 		//配置表单
 		$('#loginForm').form({
 			url : 'login',
-			onSubmit:function(){
-				
+			onSubmit : function() {
+
 			},
-			success:function(data){
-				
+			success : function(data) {
+
 			}
 		});
 		//配置提交按钮
 		$('#login').linkbutton({
 			iconCls : 'icon-ok',
 			onClick : function() {
-				var text=$('#password').textbox('getText');
-				var md5Password=md5(text);
-		    	$.ajax({
-		    		url : 'login',
+				var text = $('#password').textbox('getText');
+				var md5Password = md5(text);
+				$.ajax({
+					url : 'login',
 					type : 'post',
 					data : {
-						'rid' :$('#role').combo('getValue'),
-						'username':$('#username').textbox('getText'),
-						'password':md5Password
+						'rid' : $('#role').combo('getValue'),
+						'username' : $('#username').textbox('getText'),
+						'password' : md5Password
 					},
 					dataType : 'json',
 					success : function(data) {
 						console.log(data.state);
-						if(data.state=="200"){
-							location.href='main.jsp';
-						}else if(data.state=="400"){
-							$.messager.alert('提示','帐号,密码或角色错误');
+						if (data.state == "200") {
+							location.href = 'main.jsp';
+						} else if (data.state == "400") {
+							$.messager.alert('提示', '帐号,密码或角色错误');
+						} else if (data.state = "401") {
+							$.messager.alert('提示', '帐号已在别处登录，请勿重复登录');
+						} else {
+							$.messager.alert('提示', '未知错误');
 						}
 					}
-		    	});//end ajax
+				});//end ajax
 			}//end onClick
 		});
-		
+
 	});
 </script>
 <body>
@@ -96,18 +101,12 @@
 		<form id="loginForm" method="post">
 			<div style="margin-left: 120px; margin-top: 100px">
 				<h3>登录账户</h3>
-				<br>
-				<input id="username" name="username" type="text" style="width: 300px;">
-				<br>
-				<br>
-				<input id="password" name="password" type="password" style="width: 300px">
-				<br>
-				<br>
-				<input id="role" name="rid" class="easyui-combobox"> 
-				<br>
-				<br>
-				<a id="login" href="#">提交</a>
-				<br>
+				<br> <input id="username" name="username" type="text"
+					style="width: 300px;"> <br> <br> <input
+					id="password" name="password" type="password" style="width: 300px">
+				<br> <br> <input id="role" name="rid"
+					class="easyui-combobox"> <br> <br> <a id="login"
+					href="#">提交</a> <br>
 			</div>
 		</form>
 	</div>

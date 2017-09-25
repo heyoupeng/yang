@@ -81,5 +81,21 @@
 		<servlet-name>deleteRepairs</servlet-name>
 		<url-pattern>/deleteRepairs</url-pattern>
 	</servlet-mapping>
-		
+	
+	<!-- 过滤器 -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.yh.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 监听器 -->
+	<listener>
+		<listener-class>com.yh.listener.LoginListener</listener-class>
+	</listener>
+	
+	
 </web-app>
