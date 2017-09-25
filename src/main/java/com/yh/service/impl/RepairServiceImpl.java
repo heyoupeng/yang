@@ -7,6 +7,7 @@ import com.yh.dao.impl.RepairDaoImpl;
 import com.yh.model.Repair;
 import com.yh.service.RepairService;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class RepairServiceImpl implements RepairService {
@@ -43,6 +44,14 @@ public class RepairServiceImpl implements RepairService {
 			intNo[i]=Integer.parseInt(no[i]);
 		}
 		return rd.deleteRepairs(intNo);
+	}
+	
+	/*
+	 * tmc
+	 */
+	@Override
+	public JSONArray getAllRair() {
+		return rd.getAllRair();
 	}
 
 }

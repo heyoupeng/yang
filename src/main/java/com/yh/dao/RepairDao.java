@@ -43,4 +43,11 @@ public interface RepairDao {
 	 * @return
 	 */
 	public List<Repair> getRepairs(int start,int number);
+	
+	/**
+	 * 查询所有的维修人员信息（tmc）
+	 * @return
+	 */
+	public JSONArray getAllRair();
+
 }

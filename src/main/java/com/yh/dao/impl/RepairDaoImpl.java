@@ -13,6 +13,7 @@ import com.yh.model.Repair;
 import com.yh.util.MyConnection;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class RepairDaoImpl implements RepairDao {
 
@@ -154,6 +155,37 @@ public class RepairDaoImpl implements RepairDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	
+	/**
+	 * tmc
+	 */
+	@Override
+	public JSONArray getAllRair() {
+		Connection con = MyConnection.getConnection();
+		JSONArray jsonArray = new JSONArray();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM repair_info ");
+		sql.append(" WHERE ISNULL(repair_info.R_endtime)");
+		sql.append("and ( SELECT count(OW_id) as count ");
+		sql.append("FROM ownerworkorders_info ");
+		sql.append("where ISNULL(ownerworkorders_info.OW_endtime) ");
+		sql.append("and ownerworkorders_info.R_no = repair_info.R_no) < 10");
+		try {
+			PreparedStatement pre = con.prepareStatement(sql.toString());
+			ResultSet rs = pre.executeQuery();
+			while(rs.next()){
+				JSONObject json = new JSONObject();
+				json.put("id", rs.getInt("R_no"));
+				json.put("text", rs.getString("r_name"));
+				jsonArray.add(json);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonArray;
 	}
 
 }

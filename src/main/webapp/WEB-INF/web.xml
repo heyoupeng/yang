@@ -408,6 +408,124 @@
 		<url-pattern>/Manager/UpdateComplaintResult</url-pattern>
 	</servlet-mapping>
 
+
+
+	<!-- tmc -->
+
+	<!-- 获取所有的物品 -->
+	<servlet>
+		<servlet-name>village</servlet-name>
+		<servlet-class>com.yh.action.VillageAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>village</servlet-name>
+		<url-pattern>/village</url-pattern>
+	</servlet-mapping>
+
+	<!-- 删除一个物品 -->
+	<servlet>
+		<servlet-name>deleteVillage</servlet-name>
+		<servlet-class>com.yh.action.DeleteVillageAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteVillage</servlet-name>
+		<url-pattern>/deleteVillage</url-pattern>
+	</servlet-mapping>
+
+	<!-- 添加一个物品 -->
+	<servlet>
+		<servlet-name>addVillage</servlet-name>
+		<servlet-class>com.yh.action.AddVillageAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addVillage</servlet-name>
+		<url-pattern>/addVillage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>updateVillage</servlet-name>
+		<servlet-class>com.yh.action.UpdateVillageAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateVillage</servlet-name>
+		<url-pattern>/updateVillage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ownerOrder</servlet-name>
+		<servlet-class>com.yh.action.OwnerOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ownerOrder</servlet-name>
+		<url-pattern>/ownerOrder</url-pattern>
+	</servlet-mapping>
+	<!-- 业主报修 -->
+	<servlet>
+		<servlet-name>addOwnerOrder</servlet-name>
+		<servlet-class>com.yh.action.AddOwnerOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addOwnerOrder</servlet-name>
+		<url-pattern>/addOwnerOrder</url-pattern>
+	</servlet-mapping>
+
+	<!-- 业主维修 -->
+	<servlet>
+		<servlet-name>rownerOrder</servlet-name>
+		<servlet-class>com.yh.action.RownerOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rownerOrder</servlet-name>
+		<url-pattern>/rownerOrder</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>okOwnerOrder</servlet-name>
+		<servlet-class>com.yh.action.OkOwnerOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>okOwnerOrder</servlet-name>
+		<url-pattern>/okOwnerOrder</url-pattern>
+	</servlet-mapping>
+
+	<!-- 获取维修人员 -->
+	<servlet>
+		<servlet-name>getRep</servlet-name>
+		<servlet-class>com.yh.action.GetReprAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getRep</servlet-name>
+		<url-pattern>/getRep</url-pattern>
+	</servlet-mapping>
+
+	<!-- 物业管理人员查看的所有任务 -->
+	<servlet>
+		<servlet-name>eOrder</servlet-name>
+		<servlet-class>com.yh.action.EOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>eOrder</servlet-name>
+		<url-pattern>/eOrder</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>assignment</servlet-name>
+		<servlet-class>com.yh.action.AssignmentAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>assignment</servlet-name>
+		<url-pattern>/assignment</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteOrder</servlet-name>
+		<servlet-class>com.yh.action.DeleteOrderAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteOrder</servlet-name>
+		<url-pattern>/deleteOrder</url-pattern>
+	</servlet-mapping>
+	
+	
 	<!-- 过滤器 -->
 	<filter>
 		<filter-name>loginFilter</filter-name>
@@ -422,8 +540,8 @@
 	<listener>
 		<listener-class>com.yh.listener.LoginListener</listener-class>
 	</listener>
-	<listener>   
-		<listener-class>com.yh.listener.SessionCounter</listener-class>   
-	</listener>   
+	<listener>
+		<listener-class>com.yh.listener.SessionCounter</listener-class>
+	</listener>
 
 </web-app>
