@@ -12,7 +12,7 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	<!-- 获得所有角色（下拉框形式）  created by YangHuang-->
+	<!-- 获得所有角色（下拉框形式） created by YangHuang -->
 	<servlet>
 		<servlet-name>getAllRoles</servlet-name>
 		<servlet-class>com.yh.action.GetAllRoles</servlet-class>
@@ -21,8 +21,8 @@
 		<servlet-name>getAllRoles</servlet-name>
 		<url-pattern>/getAllRoles</url-pattern>
 	</servlet-mapping>
-	
-	<!-- 验证登录  created by YangHuang-->
+
+	<!-- 验证登录 created by YangHuang -->
 	<servlet>
 		<servlet-name>login</servlet-name>
 		<servlet-class>com.yh.action.Login</servlet-class>
@@ -31,7 +31,7 @@
 		<servlet-name>login</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 获取rid所属角色的树形功能列表 -->
 	<servlet>
 		<servlet-name>getRoleFunctions</servlet-name>
@@ -41,9 +41,9 @@
 		<servlet-name>getRoleFunctions</servlet-name>
 		<url-pattern>/getRoleFunctions</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 获得datagrid格式的维修人员信息 -->
-		<servlet>
+	<servlet>
 		<servlet-name>getRepairs</servlet-name>
 		<servlet-class>com.yh.action.GetDatagridRepairs</servlet-class>
 	</servlet>
@@ -51,7 +51,7 @@
 		<servlet-name>getRepairs</servlet-name>
 		<url-pattern>/getRepairs</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 添加维修人员 -->
 	<servlet>
 		<servlet-name>insertRepair</servlet-name>
@@ -61,7 +61,7 @@
 		<servlet-name>insertRepair</servlet-name>
 		<url-pattern>/insertRepair</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 修改维修人员 -->
 	<servlet>
 		<servlet-name>updateRepair</servlet-name>
@@ -71,7 +71,7 @@
 		<servlet-name>updateRepair</servlet-name>
 		<url-pattern>/updateRepair</url-pattern>
 	</servlet-mapping>
-		
+
 	<!-- 删除维修人员 -->
 	<servlet>
 		<servlet-name>deleteRepairs</servlet-name>
@@ -81,7 +81,333 @@
 		<servlet-name>deleteRepairs</servlet-name>
 		<url-pattern>/deleteRepairs</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- CCY -->
+	<!-- datagrid ，显示全部的业主信息 -->
+	<servlet>
+		<servlet-name>ShowOwner_info</servlet-name>
+		<servlet-class>com.yh.action.ShowOwner_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowOwner_info</servlet-name>
+		<url-pattern>/showOwnerinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 添加业主信息 -->
+	<servlet>
+		<servlet-name>InsertOwner_info</servlet-name>
+		<servlet-class>com.yh.action.InsertOwner_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertOwner_info</servlet-name>
+		<url-pattern>/insertOwnerinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 下拉框，显示所有业主的编号 -->
+	<servlet>
+		<servlet-name>ShowO_ownerId</servlet-name>
+		<servlet-class>com.yh.action.ShowO_ownerId</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowO_ownerId</servlet-name>
+		<url-pattern>/showO_ownerId</url-pattern>
+	</servlet-mapping>
+
+	<!-- 修改业主信息 -->
+	<servlet>
+		<servlet-name>UpdateOwner_info</servlet-name>
+		<servlet-class>com.yh.action.UpdateOwner_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateOwner_info</servlet-name>
+		<url-pattern>/updateOwnerinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 移除业主信息 -->
+	<servlet>
+		<servlet-name>RomoveOwner_info</servlet-name>
+		<servlet-class>com.yh.action.RomoveOwner_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RomoveOwner_info</servlet-name>
+		<url-pattern>/removeOwnerinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 导入Excel中的业主信息 -->
+	<servlet>
+		<servlet-name>AddExcelOwner_info</servlet-name>
+		<servlet-class>com.yh.action.AddExcelOwner_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddExcelOwner_info</servlet-name>
+		<url-pattern>/addExcelOwnerinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- datagrid ，显示全部的房产信息 -->
+	<servlet>
+		<servlet-name>ShowProperty_info</servlet-name>
+		<servlet-class>com.yh.action.ShowProperty_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowProperty_info</servlet-name>
+		<url-pattern>/showPropertyinfo</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- 下拉框，显示全部的房产的单元号 -->
+	<servlet>
+		<servlet-name>ShowP_unit</servlet-name>
+		<servlet-class>com.yh.action.ShowP_unit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowP_unit</servlet-name>
+		<url-pattern>/showP_unit</url-pattern>
+	</servlet-mapping>
+
+	<!-- 下拉框，显示全部的房产的楼层号 -->
+	<servlet>
+		<servlet-name>ShowP_floor</servlet-name>
+		<servlet-class>com.yh.action.ShowP_floor</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowP_floor</servlet-name>
+		<url-pattern>/showP_floor</url-pattern>
+	</servlet-mapping>
+
+	<!-- 下拉框，显示全部的房产的楼栋号 -->
+	<servlet>
+		<servlet-name>ShowP_build</servlet-name>
+		<servlet-class>com.yh.action.ShowP_build</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowP_build</servlet-name>
+		<url-pattern>/showP_build</url-pattern>
+	</servlet-mapping>
+
+	<!-- 下拉框，显示全部的房产的房间号 -->
+	<servlet>
+		<servlet-name>ShowP_room</servlet-name>
+		<servlet-class>com.yh.action.ShowP_room</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowP_room</servlet-name>
+		<url-pattern>/showP_room</url-pattern>
+	</servlet-mapping>
+
+	<!-- 添加房产信息 -->
+	<servlet>
+		<servlet-name>InsertProperty_info</servlet-name>
+		<servlet-class>com.yh.action.InsertProperty_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertProperty_info</servlet-name>
+		<url-pattern>/insertPropertyinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 修改房产信息 -->
+	<servlet>
+		<servlet-name>UpdateProperty_info</servlet-name>
+		<servlet-class>com.yh.action.UpdateProperty_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateProperty_info</servlet-name>
+		<url-pattern>/updatePropertyinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 删除房产信息 -->
+	<servlet>
+		<servlet-name>DeleteProperty_info</servlet-name>
+		<servlet-class>com.yh.action.DeleteProperty_info</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteProperty_info</servlet-name>
+		<url-pattern>/deletePropertyinfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 物业人员辞职管理信息 -->
+	<servlet>
+		<servlet-name>PropertyResign</servlet-name>
+		<servlet-class>com.yh.action.PropertyResign</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PropertyResign</servlet-name>
+		<url-pattern>/propertyResign</url-pattern>
+	</servlet-mapping>
+
+	<!-- datagrid ，显示全部的辞职申请信息 -->
+	<servlet>
+		<servlet-name>ShowQuitWork</servlet-name>
+		<servlet-class>com.yh.action.ShowQuitWork</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowQuitWork</servlet-name>
+		<url-pattern>/showQuitWork</url-pattern>
+	</servlet-mapping>
+
+	<!-- 经理审批辞职申请 -->
+	<servlet>
+		<servlet-name>ManagerApproval</servlet-name>
+		<servlet-class>com.yh.action.ManagerApproval</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerApproval</servlet-name>
+		<url-pattern>/managerApproval</url-pattern>
+	</servlet-mapping>
+
+	<!-- hyp -->
+	<!-- 添加物业人员 -->
+	<servlet>
+		<servlet-name>AddEstatePerson</servlet-name>
+		<servlet-class>com.yh.action.AddEstatePerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddEstatePerson</servlet-name>
+		<url-pattern>/Estate/AddEstatePerson</url-pattern>
+	</servlet-mapping>
+
+	<!-- 提交查询物业人员 -->
+	<servlet>
+		<servlet-name>SubmitEstatePerson</servlet-name>
+		<servlet-class>com.yh.action.SubmitEstatePerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubmitEstatePerson</servlet-name>
+		<url-pattern>/Estate/SubmitEstatePerson</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 显示查询物业人员 -->
+	<servlet>
+		<servlet-name>SelectEstatePerson</servlet-name>
+		<servlet-class>com.yh.action.SelectEstatePerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectEstatePerson</servlet-name>
+		<url-pattern>/Estate/SelectEstatePerson</url-pattern>
+	</servlet-mapping>
+
+	<!-- 修改物业人员 -->
+	<servlet>
+		<servlet-name>UpdateEstatePerson</servlet-name>
+		<servlet-class>com.yh.action.UpdateEstatePerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateEstatePerson</servlet-name>
+		<url-pattern>/Estate/UpdateEstatePerson</url-pattern>
+	</servlet-mapping>
+
+	<!-- 移除物业人员 -->
+	<servlet>
+		<servlet-name>DelEstatePerson</servlet-name>
+		<servlet-class>com.yh.action.DelEstatePerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelEstatePerson</servlet-name>
+		<url-pattern>/Estate/DelEstatePerson</url-pattern>
+	</servlet-mapping>
+
+	<!-- 准备查询条件 -->
+	<servlet>
+		<servlet-name>ManagerNo</servlet-name>
+		<servlet-class>com.yh.action.ManagerNo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerNo</servlet-name>
+		<url-pattern>/Owner/ManagerNo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 提交投诉查询条件 -->
+	<servlet>
+		<servlet-name>SubmitOwnerComplaint</servlet-name>
+		<servlet-class>com.yh.action.SubmitOwnerComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubmitOwnerComplaint</servlet-name>
+		<url-pattern>/Owner/SubmitOwnerComplaint</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 显示投诉查询条件 -->
+	<servlet>
+		<servlet-name>SelectOwnerComplaint</servlet-name>
+		<servlet-class>com.yh.action.SelectOwnerComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectOwnerComplaint</servlet-name>
+		<url-pattern>/Owner/SelectOwnerComplaint</url-pattern>
+	</servlet-mapping>
+
+	<!-- 提交投诉 -->
+	<servlet>
+		<servlet-name>SubmitComplaint</servlet-name>
+		<servlet-class>com.yh.action.SubmitComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubmitComplaint</servlet-name>
+		<url-pattern>/Owner/SubmitComplaint</url-pattern>
+	</servlet-mapping>
+
+	<!-- 更新投诉 -->
+	<servlet>
+		<servlet-name>UpdateComplaint</servlet-name>
+		<servlet-class>com.yh.action.UpdateComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateComplaint</servlet-name>
+		<url-pattern>/Owner/UpdateComplaint</url-pattern>
+	</servlet-mapping>
+
+	<!-- 撤销投诉 -->
+	<servlet>
+		<servlet-name>DelComplaints</servlet-name>
+		<servlet-class>com.yh.action.DelComplaints</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelComplaints</servlet-name>
+		<url-pattern>/Owner/DelComplaints</url-pattern>
+	</servlet-mapping>
+
+	<!-- 预加载投诉申请 -->
+	<servlet>
+		<servlet-name>SelectManagerComplaint</servlet-name>
+		<servlet-class>com.yh.action.SelectManagerComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectManagerComplaint</servlet-name>
+		<url-pattern>/Manager/SelectManagerComplaint</url-pattern>
+	</servlet-mapping>
+
+	<!-- 增加投诉单搜索条件 -->
+	<servlet>
+		<servlet-name>SubmitManagerComplaint</servlet-name>
+		<servlet-class>com.yh.action.SubmitManagerComplaint</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubmitManagerComplaint</servlet-name>
+		<url-pattern>/Manager/SubmitManagerComplaint</url-pattern>
+	</servlet-mapping>
+
+	<!-- 受理投诉 -->
+	<servlet>
+		<servlet-name>AcceptComplaints</servlet-name>
+		<servlet-class>com.yh.action.AcceptComplaints</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AcceptComplaints</servlet-name>
+		<url-pattern>/Manager/AcceptComplaints</url-pattern>
+	</servlet-mapping>
+
+	<!-- 投诉受理结果 -->
+	<servlet>
+		<servlet-name>UpdateComplaintResult</servlet-name>
+		<servlet-class>com.yh.action.UpdateComplaintResult</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateComplaintResult</servlet-name>
+		<url-pattern>/Manager/UpdateComplaintResult</url-pattern>
+	</servlet-mapping>
+
 	<!-- 过滤器 -->
 	<filter>
 		<filter-name>loginFilter</filter-name>
@@ -91,11 +417,13 @@
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- 监听器 -->
 	<listener>
 		<listener-class>com.yh.listener.LoginListener</listener-class>
 	</listener>
-	
-	
+	<listener>   
+		<listener-class>com.yh.listener.SessionCounter</listener-class>   
+	</listener>   
+
 </web-app>

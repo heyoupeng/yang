@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", acc);
 			session.setAttribute(name+"errorTimes", 0);
+			session.setAttribute("IP", getRemortIP(req));
 			if (session.getAttribute("user") == null) {// 在其他地方有登录，被清除
 				obj.put("state", "401");// 已有其他地方登录
 			}
@@ -74,4 +75,12 @@ public class Login extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		pw.write(obj.toString());
 	}
+	
+	//获得IP地址(HYP)
+	public String getRemortIP(HttpServletRequest request) {  
+	    if (request.getHeader("HTTP_x-forwarded-for") == null) {  
+	        return request.getRemoteAddr();  
+	    }  
+	    return request.getHeader("x-forwarded-for");  
+	}   
 }
