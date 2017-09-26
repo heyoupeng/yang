@@ -333,10 +333,9 @@ $(function(){
 	        var floor = $('#floor').val();
 	        var room = $('#room').val();
 	        var area = $('#area').val();
-	        var ownerId =  $('#ownerId').combobox('getValue');
-	        if(build.length==0||unit.length==0||area.length==0||floor.length==0||room.length==0||ownerId.length==0)
+	        if(build.length==0||unit.length==0||area.length==0||floor.length==0||room.length==0)
 	        	{
-	        	$.messager.alert('错误', '楼栋号/单元号/楼层号/房间号/业主编号/面积有一项为空', 'error');
+	        	$.messager.alert('错误', '楼栋号/单元号/楼层号/房间号/面积有一项为空', 'error');
 	        	return false;
 	        	}
 	    },    
