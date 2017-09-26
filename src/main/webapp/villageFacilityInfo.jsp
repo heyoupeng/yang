@@ -46,11 +46,28 @@
 		    height:400,    
 		    modal:true   
 		});
-		$("input").textbox({
+		$(".add").textbox({
 			height:35,
 			width:200,
 			hidden:true,
 		});
+		$(".update").textbox({
+			height:35,
+			width:200,
+			hidden:true,
+		});
+	    $('#an').numberbox({
+	    	height:35,
+			width:200,
+	        min:0,
+	        precision:0
+	    });
+	    $('#un').numberbox({
+	    	height:35,
+			width:200,
+	        min:0,
+	        precision:0
+	    });
 		$("#type").combo({
 			panelHeight:70
 		});
@@ -69,13 +86,15 @@
 		});
 		$("#addForm").form({
 			url:"addVillage",
+			onSubmit: function(){  
+				return testAdd();
+		    },   
 			success:function(data){
 				var data = eval('(' + data + ')');
 				console.log(data.bool);
 				if(data.bool){
 					tip("添加物品信息成功");
 		    		$('#addForm').form('clear');
-		    		$('#addWin').window('close');
 		    		$('#village').datagrid('reload');
 				}
 			}
@@ -84,7 +103,7 @@
 		$("#updateForm").form({
 			url : "updateVillage",
 			onSubmit : function(param) {
-			//	param.vNo = getTreeSelected($("#vNo"));
+				return testUpdate();
 			},
 			success : function(data) {
 				var data = eval('(' + data + ')');
@@ -92,7 +111,6 @@
 				if (data.bool) {
 					tip("修改物品信息成功");
 					$('#updateForm').form('clear');
-					$('#updateWin').window('close');
 					$('#village').datagrid('reload');
 				}
 			}
@@ -102,6 +120,35 @@
 		    	$('#addForm').form('submit'); 
 		    }
 		});
+		
+		function testAdd(){
+			var adds = $(".add");
+			for(var i = 0 ; i < adds.length; i ++){
+				if($(adds[i]).textbox("getValue") == ''){
+					return false;
+				} 
+			}
+			var an = $("#an");
+			if(an.numberbox("getValue") == ""){
+				return false;
+			}
+    		$('#addWin').window('close');
+			return true;
+		};
+		function testUpdate(){
+			var updates = $(".update");
+			for(var i = 0 ; i < updates.length; i ++){
+				if($(updates[i]).textbox("getValue") == ''){
+					return false;
+				} 
+			}
+			var un = $("#un");
+			if(un.numberbox("getValue") == ""){
+				return false;
+			}
+			$('#updateWin').window('close');
+			return true;
+		};
 		$("#test").linkbutton({
 			onClick:function(){
 				$('#village').datagrid('load',{
@@ -118,7 +165,7 @@
 		});
 		$("#uok").linkbutton({
 			onClick:function(){
-		    	$('#updateForm').form('submit'); 
+		    	$('#updateForm').form('submit');
 		    }
 		});
 		$("#uno").linkbutton({
@@ -217,15 +264,15 @@
 				<table>
 					<tr>
 						<td><label>物品名称：</label></td>
-						<td><input name="vname" type = "text"></td>
+						<td><input name="vname" class="add" type = "text"></td>
 					</tr>
 					<tr>
 						<td><label>物品数量：</label></td>
-						<td><input name="vnumber" type="text"></td>
+						<td><input name="vnumber" id="an" type="text"></td>
 					</tr>
 					<tr>
 						<td><label>物品状态：</label></td>
-						<td><input name="vremark" type="text"></td>
+						<td><input name="vremark" class="add" type="text"></td>
 					</tr>
 					<tr>
 						<td><label>物品类型：</label></td>
@@ -252,15 +299,15 @@
 					<tr>
 						<td hidden="hidden"><input id="vNo" name="vNo" type = "text"></td>
 						<td><label>物品名称：</label></td>
-						<td><input name="vName" type = "text"></td>
+						<td><input name="vName" class="update" type = "text"></td>
 					</tr>
 					<tr>
 						<td><label>物品数量：</label></td>
-						<td><input name="vNumber" type="text"></td>
+						<td><input name="vNumber" id="un" type="text"></td>
 					</tr>
 					<tr>
 						<td><label>物品状态：</label></td>
-						<td><input name="vRemark" type="text"></td>
+						<td><input name="vRemark" class="update" type="text"></td>
 					</tr>
 					<tr>
 						<td><label>物品类型：</label></td>

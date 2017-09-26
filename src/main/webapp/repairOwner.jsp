@@ -74,7 +74,7 @@ $(function(){
 	$("#updateForm").form({
 		url : "okOwnerOrder",
 		onSubmit : function(param) {
-		//	param.vNo = getTreeSelected($("#vNo"));
+			return testResult();
 		},
 		success : function(data) {
 			var data = eval('(' + data + ')');
@@ -82,11 +82,20 @@ $(function(){
 			if (data.bool) {
 				tip("提交维护状态成功");
 				$('#updateForm').form('clear');
-				$('#updateWin').window('close');
 				$('#repair').datagrid('reload');
 			}
 		}
 	});
+	function testResult(){
+		var remark = $("#result").val();
+		if(remark == ""){
+			return false;
+		}
+		else{
+			$('#updateWin').window('close');
+			return true;
+		}
+	}
 	$("#uok").linkbutton({
 		onClick:function(){
 	    	$('#updateForm').form('submit'); 
@@ -202,7 +211,7 @@ $(function(){
 				</tr>
 				<tr>
 					<td><label>维修结果：</label></td>
-					<td><textarea name="ow_result"></textarea></td>
+					<td><textarea id="result" name="ow_result"></textarea></td>
 				</tr>
 				<tr>
 					<td><a id="uno">取消</a></td>
