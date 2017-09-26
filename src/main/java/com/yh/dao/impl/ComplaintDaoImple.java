@@ -44,7 +44,6 @@ public class ComplaintDaoImple implements ComplaintDao{
 				complaints.add(com);	
 			}
 			pst.close();
-			con.close();
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();

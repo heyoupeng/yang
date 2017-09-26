@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class MyConnection {
 	private final static String DBURL="jdbc:mysql://172.18.23.6:3306/wy?useUnicode=true&characterEncoding=utf8";
-	private final static String USERNAME="root";
+	private final static String USERNAME="con";
 	private final static String PASSWORD="123";
 	private final static String DBDRIVER="com.mysql.jdbc.Driver";
 	private static Connection connection=null;
@@ -17,8 +17,8 @@ public class MyConnection {
 		}
 		try{
 			Class.forName(DBDRIVER);
-			connection=DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-			return connection;
+			Connection con=DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+			return con;
 		}catch(ClassNotFoundException e){
 			e.printStackTrace();
 		}catch(SQLException e){
