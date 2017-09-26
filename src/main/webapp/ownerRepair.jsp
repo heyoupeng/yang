@@ -60,7 +60,7 @@ $(function(){
 				tip("报修成功");
 	    		$('#addForm').form('clear');
 	    		$('#addWin').window('close');
-	    		$('#village').datagrid('reload');
+	    		$('#repair').datagrid('reload');
 			}
 		}
 	});
