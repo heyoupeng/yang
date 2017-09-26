@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.yh.dao.AccountDao;
+import com.yh.model.Account;
 import com.yh.util.MyConnection;
 
 public class AccountDaoImpl implements AccountDao {
@@ -94,6 +95,30 @@ public class AccountDaoImpl implements AccountDao {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean updatePassword(Account acc, String password) {
+		Connection con=MyConnection.getConnection();
+		StringBuffer sql=new StringBuffer();
+		sql.append("update account ");
+		sql.append("set a_password=? ");
+		sql.append("where r_id=? and a_name=? ");
+		try {
+			PreparedStatement pst=con.prepareStatement(sql.toString());
+			pst.setString(1, password);
+			pst.setInt(2,acc.getRid());
+			pst.setString(3, acc.getUsername());
+			int count=pst.executeUpdate();
+			if(count>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.yh.dao.AccountDao;
 import com.yh.dao.impl.AccountDaoImpl;
+import com.yh.model.Account;
 import com.yh.service.AccountService;
 
 public class AccountServiceImpl implements AccountService{
@@ -22,6 +23,11 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public boolean lock(String name, String rid) {
 		return accountDao.lock(name, rid);
+	}
+
+	@Override
+	public boolean updatePassword(Account acc, String password) {
+		return accountDao.updatePassword(acc, password);
 	}
 
 }

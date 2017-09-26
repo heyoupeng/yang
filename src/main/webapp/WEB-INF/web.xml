@@ -12,6 +12,7 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
 	<!-- 获得所有角色（下拉框形式） created by YangHuang -->
 	<servlet>
 		<servlet-name>getAllRoles</servlet-name>
@@ -82,6 +83,17 @@
 		<url-pattern>/deleteRepairs</url-pattern>
 	</servlet-mapping>
 
+	<!-- 修改密码 -->
+	<servlet>
+		<servlet-name>updatePassword</servlet-name>
+		<servlet-class>com.yh.action.UpdatePasswordAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updatePassword</servlet-name>
+		<url-pattern>/updatePassword</url-pattern>
+	</servlet-mapping>
+	
+	
 	<!-- CCY -->
 	<!-- datagrid ，显示全部的业主信息 -->
 	<servlet>
