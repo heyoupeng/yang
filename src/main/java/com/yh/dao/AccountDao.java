@@ -2,6 +2,8 @@ package com.yh.dao;
 
 import java.util.Date;
 
+import com.yh.model.Account;
+
 public interface AccountDao {
 	/**
 	 * 验证登录
@@ -25,6 +27,13 @@ public interface AccountDao {
 	 * @param rid	角色
 	 */
 	public boolean lock(String name,String rid);
-
+	
+	/**
+	 * 更改角色密码
+	 * @param acc	账户名
+	 * @param password	角色
+	 * @return
+	 */
+	public boolean updatePassword(Account acc,String password);
 
 }

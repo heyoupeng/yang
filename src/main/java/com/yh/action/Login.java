@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("errorName", name);
 				session.setAttribute(name+"errorTimes", 1);
 			}else{
-				//当前就这样
+				//记录错误角色
 				String oldName=(String) session.getAttribute("errorName");
 				if(oldName.equals(name)){
 					int time=(int) session.getAttribute(name+"errorTimes")+1;

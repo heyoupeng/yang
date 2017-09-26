@@ -97,7 +97,6 @@ $(function(){
 			if (data.bool) {
 				tip("任务分配成功");
 				$('#updateForm').form('clear');
-				$('#updateWin').window('close');
 				$('#repair').datagrid('reload');
 				$('#rep').combobox('reload');
 			}
@@ -107,6 +106,7 @@ $(function(){
 		onClick:function(){
 			if($("#rep").combobox("getValue") != ""){
 				$('#updateForm').form('submit'); 
+				$('#updateWin').window('close');
 			}
 			else{
 				tip("请选择维修人员")

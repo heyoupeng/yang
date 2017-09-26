@@ -104,7 +104,7 @@ public class Property_infoDaoImpl implements Property_infoDao{
 		 Connection con = MyConnection.getConnection();
 		 StringBuffer sql = new StringBuffer();
 		 sql.append("select P_building,P_unit,P_floor,P_room,property_info.O_ownerId,O_name,P_area,P_remark  ");
-		 sql.append("from property_info ,owner_info where property_info.O_ownerId = owner_info.O_ownerId   ");
+		 sql.append("from owner_info right JOIN property_info  on property_info.O_ownerId = owner_info.O_ownerId where 1=1  ");
 		 if(buildNo!=0||unitNo!=0||floorNo!=0||roomNo!=0)
 	     {
 	    	 if(buildNo!=0)
@@ -247,9 +247,25 @@ public class Property_infoDaoImpl implements Property_infoDao{
 		 int i = 0;
 		 Connection con = MyConnection.getConnection();
 		 StringBuffer sql = new StringBuffer();
+		 StringBuffer sql1 = new StringBuffer();
 		 sql.append("insert into Property_info (P_building,P_unit,P_floor,P_room,O_ownerId,P_area,P_remark) ");
 		 sql.append("values (?,?,?,?,?,?,?)");
+		 sql1.append("insert into Property_info (P_building,P_unit,P_floor,P_room,P_area,P_remark) ");
+		 sql1.append("values (?,?,?,?,?,?)");
 		 try {
+			 if(ownerId==0)
+			 {
+				 PreparedStatement pst = con.prepareStatement(sql1.toString());
+					pst.setInt(1, build);
+					pst.setInt(2, unit);
+					pst.setInt(3, floor);
+					pst.setInt(4, room);
+					pst.setDouble(5, area);
+					pst.setString(6, remark);
+					i = pst.executeUpdate();
+			 }
+			 else
+			 {
 			PreparedStatement pst = con.prepareStatement(sql.toString());
 			pst.setInt(1, build);
 			pst.setInt(2, unit);
@@ -259,6 +275,7 @@ public class Property_infoDaoImpl implements Property_infoDao{
 			pst.setInt(5,ownerId);
 			pst.setString(7, remark);
 			i = pst.executeUpdate();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

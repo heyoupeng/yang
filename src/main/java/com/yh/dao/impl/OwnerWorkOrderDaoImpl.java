@@ -31,7 +31,6 @@ public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
 		sql.append("LEFT JOIN repair_info on o_order.R_no = repair_info.R_no ");
 		sql.append("where owner_info.O_id = ? ");
 		sql.append("LIMIT ?,?");
-		System.out.println(sql.toString());
 		try {
 			PreparedStatement pre = con.prepareStatement(sql.toString());
 			pre.setString(1, aname);
@@ -52,7 +51,6 @@ public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
 					info.setState("维护人员已完成任务");
 				}
 				infos.add(info);
-				System.out.println(info);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -159,7 +157,6 @@ public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
 			break;
 		}
 		sql.append("LIMIT ?,?");
-		System.out.println(sql.toString());
 		try {
 			PreparedStatement pre = con.prepareStatement(sql.toString());
 			pre.setInt(1, rno);
@@ -296,7 +293,6 @@ public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
 		}
 		sql.append("ORDER BY r_order.R_no asc ");
 		sql.append("LIMIT ?,?");
-		System.out.println(sql.toString());
 		try {
 			PreparedStatement pre = con.prepareStatement(sql.toString());
 			pre.setInt(1, start);

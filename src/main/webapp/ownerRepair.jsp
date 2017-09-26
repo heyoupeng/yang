@@ -53,18 +53,29 @@ $(function(){
 	});
 	$("#addForm").form({
 		url:"addOwnerOrder",
+		onSubmit : function(param) {
+			return testAdd();
+		},
 		success:function(data){
 			var data = eval('(' + data + ')');
 			console.log(data.bool);
 			if(data.bool){
 				tip("报修成功");
 	    		$('#addForm').form('clear');
-	    		$('#addWin').window('close');
 	    		$('#repair').datagrid('reload');
 			}
 		}
 	});
-	
+	function testAdd(){
+		var remark = $("#remark").val();
+		if(remark == ""){
+			return false;
+		}
+		else{
+			$('#addWin').window('close');
+			return true;
+		}
+	}
 	$("#updateForm").form({
 		url : "updateVillage",
 		onSubmit : function(param) {
@@ -192,7 +203,7 @@ $(function(){
 				<table>
 					<tr>
 						<td><label>报修内容：</label></td>
-						<td><textarea name="remark" rows="3" cols="25"></textarea></td>
+						<td><textarea id="remark" name="remark" rows="3" cols="25"></textarea></td>
 					</tr>
 					
 					<tr>
