@@ -225,7 +225,7 @@
 <body>
 	<table id="repairMessages">
 	</table>
-	<div id="insertWindow" class="easyui-window" title="Ajax Form"
+	<div id="insertWindow" class="easyui-window" title=""
 		style="width: 300px; padding: 10px;left:20%;top:20%">
 		<div style="position: absolute;left:60px;text-align: center;">
 			<h2 id="inputKind"></h2>
