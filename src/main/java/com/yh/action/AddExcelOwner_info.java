@@ -39,7 +39,6 @@ public class AddExcelOwner_info extends HttpServlet{
            File file = new File(savePath);
            //判断上传文件的保存目录是否存在
            if (!file.exists() && !file.isDirectory()) {
-               System.out.println(savePath+"目录不存在，需要创建");
                //创建目录
               file.mkdir();
           }
@@ -71,7 +70,6 @@ public class AddExcelOwner_info extends HttpServlet{
                   }else{//如果fileitem中封装的是上传文件
                    //得到上传的文件名称，
                      String filename = item.getName();
-                     System.out.println(filename);
                     if(filename==null || filename.trim().equals("")){
                            continue;
                      }
@@ -98,12 +96,20 @@ public class AddExcelOwner_info extends HttpServlet{
                        //删除处理文件上传时生成的临时文件
                        item.delete();
                        message = "文件上传成功！";
+                       PrintWriter pw = resp.getWriter();
+                       JSONObject json = new JSONObject();
                      List<Owner> Filelist = KonwExcel.getDataFromExcel(savePath+"/"+filename);
-                     boolean flag = os.InsertMantOwner(Filelist);
-                     PrintWriter pw = resp.getWriter();
-                     JSONObject json = new JSONObject();
-                     json.put("state", flag);
-                     pw.write(json.toString());
+                     if("".equals(Filelist)||Filelist==null)
+                     {
+                    	 json.put("state", false);
+                         pw.write(json.toString());
+                     }
+                     else
+                     {
+                    	 boolean flag = os.InsertMantOwner(Filelist);
+                         json.put("state", flag);
+                         pw.write(json.toString());
+                     }
                      pw.flush();
                      pw.close();
                    }

@@ -347,7 +347,7 @@ $(function(){
 	        	}
 	        else
 	        	{
-	        	$.messager.alert('错误', '添加业主信息失败', 'error');
+	        	$.messager.alert('错误', '添加业主信息失败,Excel表头数量不对', 'error');
 	        	}
       }
 	});   

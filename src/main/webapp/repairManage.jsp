@@ -33,7 +33,7 @@
 			pageSize : 5,//一页一共有多少条数据
 			pageList : [ 3, 4, 5, 6, 7, 8, 9, 10 ],
 			rownumbers : true,//展示是当前表格的第几行
-			title : '学生信息',
+			title : '维护人员信息',
 			columns : [ [//行中的数据设置（ck为checkbox，以下的数据为json中）
 			{
 				field : 'ck',
