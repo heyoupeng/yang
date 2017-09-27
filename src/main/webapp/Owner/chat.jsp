@@ -82,7 +82,9 @@ $(function(){
 	var websocket = null;
 	//判断当前浏览器是否支持WebSocket
 	if ('WebSocket' in window) {
-		websocket = new WebSocket("ws://172.18.23.27:8080/yang/websocket");
+		var url="${pageContext.request.requestURL}";
+		url=url.substring(url.indexOf("http:")+4,url.indexOf("Owner/"));
+		websocket = new WebSocket('ws'+url+'websocket');
 	} else {
 		alert('当前浏览器 Not support websocket!');
 	}
@@ -124,8 +126,10 @@ $(function(){
 	}
 	//------------------------------------------------------------------显示在线人数
 	$(document).ready(function () {
-            // 创建链接
-            var socket = io.connect('http://172.18.23.27:8080/yang/websocket');
+		var url="${pageContext.request.requestURL}";
+		url=url.substring(0,url.indexOf("Owner/"));
+            // 创建链接	
+            var socket = io.connect('ws://'+url+'websocket');
              socket.on('stats', function(data) {
              console.log('Connected clients:', data.numClients);
              $('#count').text(data.numClients);

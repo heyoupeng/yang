@@ -20,7 +20,28 @@
 <script type="text/javascript">
 	if (window != top)
 		top.location.href = location.href;
+	/**
+	产生验证码模块
+	*/
+	var code = ""
+	window.onload = createCode;
+	function createCode() {
+		code = "";
+		var codeLength = 4;//验证码的长度  
+		var checkCode = $("#checkCode");
+		var random = new Array(//验证码字符库 
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+				'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+				'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
+				'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+				'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+		for (var i = 0; i < codeLength; i++) {
+			code += random[Math.floor(Math.random() * 62)];//获得随机字母
+		}
+		$("#checkCode").attr("value",code);//验证码赋值  
+	}
 	$(function() {
+
 		//登录窗口
 		$('#loginWindow').window({
 			width : 600,
@@ -43,6 +64,11 @@
 			prompt : '密码',
 			height : 40
 		})
+		
+		$('#inputCode').textbox({
+			prompt : '请输入验证码',
+			height : 40
+		})
 
 		//角色
 		$('#role').combobox({
@@ -50,7 +76,7 @@
 			valueField : 'id',
 			textField : 'text',
 			editable : false,
-			height : 30
+			height : 40
 		});
 		//配置表单（无，直接通过异步请求进行判断）
 		$('#loginForm').form({
@@ -100,14 +126,25 @@
 	<div id="loginWindow">
 		<!--登陆入口  -->
 		<form id="loginForm" method="post">
-			<div style="margin-left: 120px; margin-top: 100px">
+			<div style="margin-left: 120px; margin-top: 50px">
 				<h3>登录账户</h3>
 				<br> <input id="username" name="username" type="text"
 					style="width: 300px;"> <br> <br> <input
 					id="password" name="password" type="password" style="width: 300px">
-				<br> <br> <input id="role" name="rid"
-					class="easyui-combobox"> <br> <br> <a id="login"
-					href="#">提交</a> <br>
+				<br>
+				<br>
+				<div>
+				<input type="text" id="inputCode"  type="text"
+				style="width:200px;display: inline;" placeholder="请输入验证码" /> 
+				<input type="button" id="checkCode" onclick="createCode()" 
+					style="background-color: rgba(255,255,255,1);
+					width:80px;height:37px;margin-left:10px;font-size:20px;
+					border: solid 1px;"/>
+				</div>
+				<br>
+				<input id="role" name="rid"
+						class="easyui-combobox">
+				 <a id="login" href="#" class=>登录</a> <br>
 			</div>
 		</form>
 	</div>
