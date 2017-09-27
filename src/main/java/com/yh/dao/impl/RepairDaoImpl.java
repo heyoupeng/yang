@@ -123,6 +123,8 @@ public class RepairDaoImpl implements RepairDao {
 		}
 		return sum;
 	}
+	
+	
 
 	@Override
 	public boolean deleteRepairs(int[] no) {
@@ -186,6 +188,29 @@ public class RepairDaoImpl implements RepairDao {
 			e.printStackTrace();
 		}
 		return jsonArray;
+	}
+
+	@Override
+	public List<Repair> getAllR_noAndR_name() {
+		List<Repair> list = new ArrayList<Repair>();
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select R_name,R_no from repair_info ");
+		try {
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				Repair r = new Repair();
+				r.setNo(rs.getInt("R_no"));
+				r.setName(rs.getString("R_name"));
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

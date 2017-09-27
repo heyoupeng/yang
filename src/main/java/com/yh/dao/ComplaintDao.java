@@ -1,6 +1,7 @@
 package com.yh.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yh.model.Complaint;
 
@@ -59,4 +60,9 @@ public interface ComplaintDao {
 	 * @return
 	 */
 	public boolean updateComplaintsByObj(Complaint c);
+	/**
+	 *根据年份查找每个月的投诉工单数量，生成报表
+	 * @return
+	 */
+	public Map selectAllMonths(String year);
 }

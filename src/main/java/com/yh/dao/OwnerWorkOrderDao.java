@@ -1,6 +1,7 @@
 package com.yh.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.ls.LSException;
 
@@ -55,6 +56,11 @@ public interface OwnerWorkOrderDao {
 	public boolean assignment(int owid, int rno);
 	
 	public int deleteOrder(int[] owids);
-
-	
+     /**
+      * 根据年份和季度和维修工人的id来生成报表，显示每个工人对应的维修次数
+      * @param year
+      * @param R_no
+      * @return
+      */
+	public Map selectCountByTimeAndR_no(String year,int R_no);
 }

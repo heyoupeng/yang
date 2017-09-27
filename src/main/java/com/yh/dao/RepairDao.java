@@ -49,5 +49,11 @@ public interface RepairDao {
 	 * @return
 	 */
 	public JSONArray getAllRair();
+	/**
+	 * 找到所有的维修人员的R_no
+	 * @return
+	 */
+	public List<Repair> getAllR_noAndR_name();
+	
 
 }

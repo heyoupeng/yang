@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.yh.dao.ComplaintDao;
 import com.yh.model.Complaint;
@@ -301,6 +303,30 @@ public class ComplaintDaoImple implements ComplaintDao{
 			ex.printStackTrace();
 		}
 		return flag;
+	}
+
+	@Override
+	public Map selectAllMonths(String year) {
+		Map map = new HashMap<Integer,Integer>();
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+	   sql.append("SELECT  DATE_FORMAT(C_endtime,'%m') AS months,count(*) as count  ");
+	   sql.append("FROM complant_info where C_endtime>? and C_endtime<? ");
+	   sql.append("GROUP BY DATE_FORMAT(C_endtime,'%Y-%M') ORDER BY months");
+		try {
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			pst.setString(1, year);
+			pst.setString(2, Integer.toString((Integer.parseInt(year)+1)));
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				map.put(Integer.parseInt(rs.getString("months")), rs.getInt("count"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 
 }
