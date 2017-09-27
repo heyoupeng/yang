@@ -26,13 +26,14 @@
 </head>
 <script type="text/javascript">
 	$(function() {
+		var idReg='/^/'
 		$('#repairMessages').datagrid({
 			url : 'getRepairs',//创建时访问的url
 			pagination : true,//分页
 			pageSize : 5,//一页一共有多少条数据
 			pageList : [ 3, 4, 5, 6, 7, 8, 9, 10 ],
 			rownumbers : true,//展示是当前表格的第几行
-			title : '学生信息',
+			title : '维护人员信息',
 			columns : [ [//行中的数据设置（ck为checkbox，以下的数据为json中）
 			{
 				field : 'ck',
@@ -75,6 +76,7 @@
 				iconCls : 'icon-add',//图标
 				text : '添加', //文字
 				handler : function() { //点击事件
+					$("#inputKind").text("添加维修人员信息");
 					$("#submitButton").linkbutton({
 						iconCls : 'icon-ok',
 						onClick : function() {
@@ -114,6 +116,7 @@
 				iconCls : 'icon-edit',
 				text : '修改',
 				handler : function() {
+					$("#inputKind").text("修改维修人员信息");
 					var rows = $('#repairMessages').datagrid('getSelections');
 					if(rows.length==1){
 						//为提交信息窗口绑定更新事件
@@ -194,43 +197,65 @@
 			}
 		});
 		$('#insertWindow').window({    
-		    width:600,    
-		    height:400,
+		    width:440,    
+		    height:300,
 		    modal:true,
 		    closed:true
 		});
+		$('#inputName').textbox({
+			prompt : '姓名',
+			height : 30,
+			width  : 250
+		})
+		$('#inputId').textbox({
+			prompt : '身份证',
+			height : 30,
+			width  : 250
+		})
+		$('#inputPhone').textbox({
+			prompt : '联系方式',
+			height : 30,
+			width  : 250
+		})
+		$('#inputStartTime').textbox({
+			height : 30,
+			width  : 250
+		})
 	});
 </script>
 <body>
 	<table id="repairMessages">
 	</table>
-	<div id="insertWindow" class="easyui-window" title="Ajax Form"
-		style="width: 300px; padding: 10px;">
-		<form id="inputForm" method="post">
-			<table>
-				<tr>
-					<td><input id='no' name="no" type="hidden"></input></td>
-				</tr>
-				<tr>
-					<td>姓名:</td>
-					<td><input id='inputName' name="name" class="f1 easyui-textbox"></input></td>
-				</tr>
-				<tr>
-					<td>身份证号:</td>
-					<td><input id='inputId' name="id" class="f1 easyui-textbox"></input></td>
-				</tr>
-				<tr>
-					<td>联系方式:</td>
-					<td><input id='inputPhone' name="phone" class="f1 easyui-textbox"></input></td>
-				</tr>
-				<tr>
-					<td>入职时间:</td>
-					<td><input id='inputStartTime' name="startTime" class="easyui-datebox" required="required"></input></td>
-				</tr>
-			</table>
-			<a id="submitButton" href="#">提交</a>
-			<a id="noSubmitButton"> 取消</a>
-		</form>
+	<div id="insertWindow" class="easyui-window" title=""
+		style="width: 300px; padding: 10px;left:20%;top:20%">
+		<div style="position: absolute;left:60px;text-align: center;">
+			<h2 id="inputKind"></h2>
+			<form id="inputForm" method="post">
+				<table style="margin-bottom: 10px">
+					<tr>
+						<td><input id='no' name="no" type="hidden"></input></td>
+					</tr>
+					<tr>
+						<td>姓名:</td>
+						<td><input id='inputName' name="name" class="f1 easyui-textbox"></input></td>
+					</tr>
+					<tr>
+						<td>身份证号:</td>
+						<td><input id='inputId' name="id" class="f1 easyui-textbox"></input></td>
+					</tr>
+					<tr>
+						<td>联系方式:</td>
+						<td><input id='inputPhone' name="phone" class="f1 easyui-textbox"></input></td>
+					</tr>
+					<tr>
+						<td>入职时间:</td>
+						<td><input id='inputStartTime' name="startTime" class="easyui-datebox" required="required"></input></td>
+					</tr>
+				</table>
+				<a id="submitButton" href="#" style="margin-right:10px">提交</a>
+				<a id="noSubmitButton"> 取消</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
