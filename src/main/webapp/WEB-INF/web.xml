@@ -33,6 +33,16 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
+	<!-- 退出登录 created by YangHuang -->
+	<servlet>
+		<servlet-name>loginOut</servlet-name>
+		<servlet-class>com.yh.action.LoginOut</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginOut</servlet-name>
+		<url-pattern>/loginOut</url-pattern>
+	</servlet-mapping>
+
 	<!-- 获取rid所属角色的树形功能列表 -->
 	<servlet>
 		<servlet-name>getRoleFunctions</servlet-name>
