@@ -94,30 +94,36 @@
 			onClick : function() {
 				var text = $('#password').textbox('getText');
 				var md5Password = md5(text);
-				$.ajax({
-					url : 'login',
-					type : 'post',
-					data : {
-						'rid' : $('#role').combo('getValue'),
-						'username' : $('#username').textbox('getText'),
-						'password' : md5Password
-					},
-					dataType : 'json',
-					success : function(data) {
-						console.log(data.state);
-						if (data.state == "200") {
-							location.href = 'main.jsp';
-						} else if (data.state == "400") {
-							$.messager.alert('提示', '帐号,密码或角色错误');
-						} else if (data.state == "401") {
-							$.messager.alert('提示', '帐号已在别处登录，请勿重复登录');
-						} else if(data.state=="402"){
-							$.messager.alert('提示', '错误次数过多，请在'+data.unLocktime+'后再试');
-						} else {
-							$.messager.alert('提示', '未知错误');
+				var inputCode=$('#inputCode').textbox('getText');
+				if(inputCode==code){
+					$.ajax({
+						url : 'login',
+						type : 'post',
+						data : {
+							'rid' : $('#role').combo('getValue'),
+							'username' : $('#username').textbox('getText'),
+							'password' : md5Password
+						},
+						dataType : 'json',
+						success : function(data) {
+							console.log(data.state);
+							if (data.state == "200") {
+								location.href = 'main.jsp';
+							} else if (data.state == "400") {
+								$.messager.alert('提示', '帐号,密码或角色错误');
+							} else if (data.state == "401") {
+								$.messager.alert('提示', '帐号已在别处登录，请勿重复登录');
+							} else if(data.state=="402"){
+								$.messager.alert('提示', '错误次数过多，请在'+data.unLocktime+'后再试');
+							} else {
+								$.messager.alert('提示', '未知错误');
+							}
 						}
-					}
-				});//end ajax
+					});//end ajax
+				}else{
+					$.messager.alert('提示','验证码输入错误');
+				}
+
 			}//end onClick
 		});
 	});

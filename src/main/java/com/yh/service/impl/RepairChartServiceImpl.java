@@ -62,7 +62,6 @@ public class RepairChartServiceImpl implements RepairChartService{
 		   String color1 = "#BBFFFF";
 		   String color2 = "#00868B";
 		   String color3 = "#96CDCD";
-		   
 		   String color4 = "#668B8B";
 		   if(i%4==0)
 		   {

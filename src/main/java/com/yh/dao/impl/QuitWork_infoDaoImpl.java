@@ -117,4 +117,29 @@ public class QuitWork_infoDaoImpl implements QuitWork_infoDao{
 		return i;
 	}
 
+	@Override
+	public List<String> selectMsgByE_no(int E_no) {
+		List<String> list = new ArrayList<String>();
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("select Q_content,Q_starttime,Q_endtime,Q_result ");
+		sql.append("from quitwok_info where E_no = ?");
+		try {
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			pst.setInt(1, E_no);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next())
+			{
+				list.add(rs.getString("Q_content"));
+				list.add(rs.getString("Q_starttime"));
+				list.add(rs.getString("Q_endtime"));
+				list.add(rs.getString("Q_result"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

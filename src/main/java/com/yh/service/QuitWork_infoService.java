@@ -1,5 +1,7 @@
 package com.yh.service;
 
+import java.util.List;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -29,4 +31,10 @@ public interface QuitWork_infoService {
       * @return
       */
      public int ApprovalQuitWork_info(String id,String state,String result);
+     /**
+      * 判断登录角色是否发起辞职申请角
+      * @param name
+      * @return
+      */
+     public List<String> judgePropertyResign(String name);
 }

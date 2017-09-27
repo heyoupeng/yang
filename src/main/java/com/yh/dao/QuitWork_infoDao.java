@@ -37,4 +37,10 @@ public interface QuitWork_infoDao {
      * @return
      */
     public int updateQuitWork_infoByE_no(int E_no,String state,String result);
+    /**
+     * 通过E_no去查找该用户的辞职申请
+     * @param E_no
+     * @return
+     */
+    public List<String> selectMsgByE_no(int E_no);
 }
