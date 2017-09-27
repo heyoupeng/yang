@@ -58,7 +58,15 @@ public class AddEstatePerson extends HttpServlet{
 		e.setEid(uid);
 		e.setCurrentTime(currentTime);
 		//插入数据库
-		boolean flag=geps.addEstatePersonByObj(e);
+		boolean flag=false;
+		if(uname!=""&&uid!=""&&uphone!=""){
+			e.setEname(uname);
+			e.setEphone(uphone);
+			e.setEid(uid);
+			e.setCurrentTime(currentTime);
+			flag=geps.addEstatePersonByObj(e);
+			
+		}
 		//拼接写回，一定的格式不能变
 		JSONObject j=new JSONObject();
 		PrintWriter pw = resp.getWriter();
