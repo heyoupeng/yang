@@ -26,6 +26,7 @@
 </head>
 <script type="text/javascript">
 	$(function() {
+		var idReg='/^/'
 		$('#repairMessages').datagrid({
 			url : 'getRepairs',//创建时访问的url
 			pagination : true,//分页
