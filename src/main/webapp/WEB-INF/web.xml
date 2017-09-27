@@ -266,6 +266,27 @@
 		<servlet-name>ManagerApproval</servlet-name>
 		<url-pattern>/managerApproval</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 辞职报表生成 -->
+	<servlet>
+		<servlet-name>RepairChart</servlet-name>
+		<servlet-class>com.yh.action.RepairChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RepairChart</servlet-name>
+		<url-pattern>/repairChart</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 投诉报表生成 -->
+	<servlet>
+		<servlet-name>ComplaintChart</servlet-name>
+		<servlet-class>com.yh.action.ComplaintChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ComplaintChart</servlet-name>
+		<url-pattern>/complaintChart</url-pattern>
+	</servlet-mapping>
+	
 
 	<!-- hyp -->
 	<!-- 添加物业人员 -->
