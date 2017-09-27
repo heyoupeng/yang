@@ -86,7 +86,9 @@ $(function(){
 								iconCls: 'icon-edit',
 								text:'反馈投诉',
 								handler: function(){
-									var row  = $('#dg').datagrid('getSelected');
+									var rows  = $('#dg').datagrid('getSelections');
+									if(rows.length==1){
+										var row  = $('#dg').datagrid('getSelected');
 										if(row!=null){
 											$('#win2').window('open');
 											$('#form2').form('load',{
@@ -101,25 +103,49 @@ $(function(){
 							    				//$('#form1').form('clear');
 							    			});
 										}
+									}else{
+										if(rows.length==0){
+											$.messager.alert('消息提示','请选择反馈行！','info',function(){
+							    				//$('#form1').form('clear');
+							    			});
+										}else{
+											$.messager.alert('消息提示','请选择单行反馈！','info',function(){
+							    				//$('#form1').form('clear');
+							    			});
+										}
 									}
+								}
 							},'-',{
 			    				iconCls: 'icon-tip',
-			    				text:'产看结果明细',
+			    				text:'查看结果明细',
 			    				handler: function(){
-			    					var row  = $('#dg').datagrid('getSelected');
-			    					//console.log(row)
-			    						if(row!=null){
-			    							$('#win4').window('open');
-			    							$('#form4').form('load',{
-			    								cid4:row.cid,
-			    								cresult4:row.cresult,
-			    							});
-			    						}else{
+			    					var rows  = $('#dg').datagrid('getSelections');
+			    					if(rows.length==1){
+			    						var row  = $('#dg').datagrid('getSelected');
+				    					//console.log(row)
+				    						if(row!=null){
+				    							$('#win4').window('open');
+				    							$('#form4').form('load',{
+				    								cid4:row.cid,
+				    								cresult4:row.cresult,
+				    							});
+				    						}else{
+				    							$.messager.alert('消息提示','请选择查看行！','info',function(){
+				    			    				//$('#form1').form('clear');
+				    			    			});
+				    						}
+			    					}else{
+			    						if(rows.length==0){
 			    							$.messager.alert('消息提示','请选择查看行！','info',function(){
+			    			    				//$('#form1').form('clear');
+			    			    			});
+			    						}else{
+			    							$.messager.alert('消息提示','请选择单行查看！','info',function(){
 			    			    				//$('#form1').form('clear');
 			    			    			});
 			    						}
 			    					}
+			    				}
 			    			}
 							]
 						});
@@ -176,7 +202,7 @@ $(function(){
 					}
 				});
 	    	}else{
-	    		$.messager.alert('消息提示','请选择删除行！','info',function(){
+	    		$.messager.alert('消息提示','请选择行受理！','info',function(){
 		    		$('#dg').datagrid('reload');
 		    	});
 	    	}

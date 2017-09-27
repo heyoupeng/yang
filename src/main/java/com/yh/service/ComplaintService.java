@@ -18,6 +18,12 @@ public interface ComplaintService {
 	 */
 	public boolean insertComplaintByObj(Complaint c);
 	/**
+	 * 发起新的投诉
+	 * @param c
+	 * @return
+	 */
+	public boolean insertComplaintByObjNoEndtime(Complaint c);
+	/**
 	 * 修改投诉内容
 	 * @param c
 	 * @return

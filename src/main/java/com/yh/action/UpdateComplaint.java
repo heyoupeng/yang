@@ -54,11 +54,11 @@ public class UpdateComplaint extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		if (flag==true) {
 			j.put("success", true);
-			j.put("msg", "添加成功");
+			j.put("msg", "修改成功");
 			pw.write(j.toString());
 		} else {
 			j.put("success", false);
-			j.put("msg", "添加失败");
+			j.put("msg", "修改失败");
 			pw.write(j.toString());
 		}
 	}

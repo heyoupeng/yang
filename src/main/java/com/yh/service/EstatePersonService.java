@@ -11,6 +11,12 @@ public interface EstatePersonService {
 	 */
 	public boolean addEstatePersonByObj(Estate e);
 	/**
+	 * 添加物业人员
+	 * @param e 添加物业人员对象
+	 * @return
+	 */
+	public boolean addEstatePersonByObjNoPhone(Estate e);
+	/**
 	 * 查询物业人员
 	 * @param e 查询物业人员对象
 	 * @return

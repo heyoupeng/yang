@@ -91,31 +91,48 @@ $(function(){
 	    				iconCls: 'icon-edit',
 	    				text:'修改',
 	    				handler: function(){
-	    					var row  = $('#dg').datagrid('getSelected');
-	    					console.log(row)
-	    						if(row!=null){
-	    							//$("#ename2").textbox("setValue", row.ename);
-	    							//$("#ename2").val(row.ename);
-	    							$('#win2').window('open');
-	    							$('#form2').form('load',{
-	    								eno2:row.eno,
-	    								uname2:row.ename,
-	    								uphone2:row.ephone,
-	    								uid2:row.eid,
-	    							});
-
-
-	    						}else{
+	    					var rows  = $('#dg').datagrid('getSelections');
+	    					if(rows.length==1){
+	    						var row  = $('#dg').datagrid('getSelected');
+		    					console.log(row)
+		    						if(row!=null){
+		    							$('#win2').window('open');
+		    							$('#form2').form('load',{
+		    								eno2:row.eno,
+		    								uname2:row.ename,
+		    								uphone2:row.ephone,
+		    								uid2:row.eid,
+		    							});
+		    						}else{
+		    							$.messager.alert('消息提示','请选择修改行！','info',function(){
+		    			    				//$('#form1').form('clear');
+		    			    			});
+		    						}
+	    					}else{
+	    						if(rows.length==0){
 	    							$.messager.alert('消息提示','请选择修改行！','info',function(){
+	    			    				
+	    			    			});
+	    						}else{
+	    							$.messager.alert('消息提示','请选择单行修改！','info',function(){
 	    			    				//$('#form1').form('clear');
 	    			    			});
 	    						}
+	    					}
+	    					
 	    					}
 	    			},'-',{
 	    				iconCls: 'icon-remove',
 	    				text:'移除',
 	    				handler: function(){
-	    					$('#win3').window('open');
+	    					var rows  = $('#dg').datagrid('getSelections');
+	    					if(rows.length!=0){
+	    						$('#win3').window('open');
+	    					}else{
+	    						$.messager.alert('消息提示','请选择移除！','info',function(){
+    			    				//$('#form1').form('clear');
+    			    			});
+	    					}
 	    				}
 	    			}
 	    			]
@@ -303,49 +320,56 @@ $(function(){
 	$('#submit3').linkbutton({    
 	    iconCls: 'icon-ok',
 	    onClick:function(){
-	    	
-	    	//var t1 = window.setTimeout(hello,1000); 
-	    	//var t2 = window.setTimeout("TimeToDelete()",10000);//使用字符串执行方法 
-	    	var t1 = window.setTimeout(TimeToDelete,5000); 
-			var t2 = window.setTimeout("TimeToDelete()",5000);
-			$('#win3').window('close');
-			function TimeToDelete(){
-				window.clearTimeout(t1);//去掉定时器 
-				var rows  = $('#dg').datagrid('getSelections');
-				//alert(rows.length);
-				if(rows.length!=0){
-					var enos = [];
-					for (var i = 0; i < rows.length; i++) {
-						enos.push(rows[i].eno);
-					}
-					$.ajax({
-						url:'DelEstatePerson',
-						type:'post',
-						dataType:'text',
-						data:{'enos':enos},
-						success:function(data){
-							var data = eval('(' + data + ')');
-					    	if(data.success==true){
-					    		$.messager.alert('消息提示',data.msg,'info',function(){
-						    		$('#win3').window('close');
-						    		$('#dg').datagrid('reload');
-						    	});
-					    	}else{
-					    		$.messager.alert('消息提示',data.msg,'info',function(){
-					    			$('#win3').window('close');
-				    			});
-					    	}
-						}
-					});
-				}else{
-					$.messager.alert('消息提示','请选择删除行！','info',function(){
-			    		$('#dg').datagrid('reload');
-			    	});
-				}
+	    	var rows  = $('#dg').datagrid('getSelections');
+	    	if(rows.lenght!=0){
+	    		$.messager.alert('消息提示','5秒后删除！','info',function(){
+		    		$('#dg').datagrid('reload');
+		    	});
+	    		var t1 = window.setTimeout(TimeToDelete,5000); 
+				var t2 = window.setTimeout("TimeToDelete()",5000);
 				$('#win3').window('close');
-			}
-				
-			}
+				function TimeToDelete(){
+					window.clearTimeout(t1);//去掉定时器 
+					var rows  = $('#dg').datagrid('getSelections');
+					//alert(rows.length);
+					if(rows.length!=0){
+						var enos = [];
+						for (var i = 0; i < rows.length; i++) {
+							enos.push(rows[i].eno);
+						}
+						$.ajax({
+							url:'DelEstatePerson',
+							type:'post',
+							dataType:'text',
+							data:{'enos':enos},
+							success:function(data){
+								var data = eval('(' + data + ')');
+						    	if(data.success==true){
+// 						    		$.messager.alert('消息提示',data.msg,'info',function(){
+// 							    		$('#win3').window('close');
+// 							    		$('#dg').datagrid('reload');
+// 							    	});
+						    	}else{
+// 						    		$.messager.alert('消息提示',data.msg,'info',function(){
+// 						    			$('#win3').window('close');
+// 					    			});
+						    	}
+							}
+						});
+					}else{
+						$.messager.alert('消息提示','请选择删除行！','info',function(){
+				    		$('#dg').datagrid('reload');
+				    	});
+					}
+					$('#win3').window('close');
+				}
+	    	}else{
+	    		$.messager.alert('消息提示','请选择删除行！','info',function(){
+		    		$('#dg').datagrid('reload');
+		    	});
+	    	}
+	
+		}
 
 	});
 	$('#exit3').linkbutton({    
@@ -381,7 +405,7 @@ $(function(){
     		<div style="margin-left: 70px;margin-top: 50px;">    
         		姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input id="uname1" name="uname1" type="text" data-options="required:true" style="width:250px">&nbsp;
 				<br><br>
-				联系方式：<input id="uphone1" name="uphone1" type="text" data-options="required:true" style="width:250px">
+				联系方式：<input id="uphone1" name="uphone1" type="text" style="width:250px">
 				<br><br>
 				身份证号：<input id="uid1" name="uid1"  type="text" data-options="required:true" style="width:250px">
 				<br><br>
