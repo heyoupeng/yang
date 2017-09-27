@@ -246,6 +246,16 @@
 		<servlet-name>PropertyResign</servlet-name>
 		<url-pattern>/propertyResign</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 物业人员判断是否辞职 -->
+	<servlet>
+		<servlet-name>JudgePropertyResign</servlet-name>
+		<servlet-class>com.yh.action.JudgePropertyResign</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JudgePropertyResign</servlet-name>
+		<url-pattern>/judgePropertyResign</url-pattern>
+	</servlet-mapping>
 
 	<!-- datagrid ，显示全部的辞职申请信息 -->
 	<servlet>
