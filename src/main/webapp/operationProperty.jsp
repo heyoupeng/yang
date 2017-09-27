@@ -463,12 +463,12 @@ $(function(){
                     	  var s = eval("("+data+")");
               	        if(s.state=='1')
               	        	{
-              	        	$.messager.alert('成功', '移除业主信息成功', 'info');
+              	        	$.messager.alert('成功', '删除房产信息成功', 'info');
               	        	$('#dg').datagrid('load');
               	        	}
               	        else
               	        	{
-              	        	$.messager.alert('错误', '移除业主信息失败', 'error');
+              	        	$.messager.alert('错误', '删除房产信息失败', 'error');
               	        	}
                       }
         		 })

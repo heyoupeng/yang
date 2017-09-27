@@ -38,5 +38,11 @@ public class QuitWork_infoServiceImpl implements QuitWork_infoService{
 		}
 		return i;
 	}
+	@Override
+	public List<String> judgePropertyResign(String name) {
+		 int E_no = edao.selectE_noByE_id(name);
+		 List<String> list = qdao.selectMsgByE_no(E_no);
+		 return list;
+	}
 
 }
