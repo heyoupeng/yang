@@ -57,7 +57,7 @@ public class KonwExcel {
 
 		// 判断表头是否正确
 		if (rowHead.getPhysicalNumberOfCells() != 4) {
-			System.out.println("表头的数量不对!");
+			return null;
 		}
 
 		// 获得数据的总行数
