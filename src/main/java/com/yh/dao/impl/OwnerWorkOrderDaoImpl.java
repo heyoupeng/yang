@@ -5,20 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.yh.dao.OwnerWorkOrderDao;
 import com.yh.model.OwnerWorkOrderInfo;
 import com.yh.util.MyConnection;
 
 public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
-	public static void main(String[] args) {
-		OwnerWorkOrderDaoImpl i = new OwnerWorkOrderDaoImpl();
-		/*List<OwnerWorkOrderInfo> l = i.selectOrderByOId(2, 0, 3);
-		for (OwnerWorkOrderInfo ownerWorkOrderInfo : l) {
-			System.out.println(ownerWorkOrderInfo);
-		}*/
-	}
+//	public static void main(String[] args) {
+//		OwnerWorkOrderDaoImpl i = new OwnerWorkOrderDaoImpl();
+//	}
 	@Override
 	public List<OwnerWorkOrderInfo> selectOrderByOId(String aname, int start, int pageSize) {
 		StringBuffer sql = new StringBuffer();
@@ -401,5 +399,29 @@ public class OwnerWorkOrderDaoImpl implements OwnerWorkOrderDao {
 			e1.printStackTrace();
 		}
 		return sum;
+	}
+	@Override
+	public  Map selectCountByTimeAndR_no(String year, int R_no) {
+		Map map = new HashMap<Integer,Integer>();
+		Connection con = MyConnection.getConnection();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT DATE_FORMAT(OW_endtime,'%m') as months,COUNT(OW_id) as count FROM ownerworkorders_info  ");
+		sql.append("where OW_endtime>? and OW_endtime<?  and R_no =? ");
+		sql.append("GROUP BY DATE_FORMAT(OW_endtime,'%y-%m') ORDER BY months ");
+		try {
+			PreparedStatement pst = con.prepareStatement(sql.toString());
+			pst.setString(1, year);
+			pst.setString(2, Integer.toString((Integer.parseInt(year)+1)));
+			pst.setInt(3, R_no);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				map.put(Integer.parseInt(rs.getString("months")), rs.getInt("count"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 }
