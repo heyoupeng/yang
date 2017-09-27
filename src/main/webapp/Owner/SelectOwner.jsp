@@ -84,24 +84,38 @@ $(function(){
 	    				iconCls: 'icon-edit',
 	    				text:'修改投诉',
 	    				handler: function(){
-	    					var row  = $('#dg').datagrid('getSelected');
-	    					console.log(row)
-	    						if(row!=null){
-	    							//$("#ename2").textbox("setValue", row.ename);
-	    							//$("#ename2").val(row.ename);
-	    							$('#win2').window('open');
-	    							$('#form2').form('load',{
-	    								cid2:row.cid,
-	    								mno2:row.mno,
-	    								cremark2:row.cremark,
-	    								cendtime2:row.cendtime,
-	    							});
-	    						}else{
+	    					var rows  = $('#dg').datagrid('getSelections');
+	    					if(rows.length==1){
+	    						var row  = $('#dg').datagrid('getSelected');
+		    					console.log(row)
+		    						if(row!=null){
+		    							//$("#ename2").textbox("setValue", row.ename);
+		    							//$("#ename2").val(row.ename);
+		    							$('#win2').window('open');
+		    							$('#form2').form('load',{
+		    								cid2:row.cid,
+		    								mno2:row.mno,
+		    								cremark2:row.cremark,
+		    								cendtime2:row.cendtime,
+		    							});
+		    						}else{
+		    							$.messager.alert('消息提示','请选择修改行！','info',function(){
+		    			    				//$('#form1').form('clear');
+		    			    			});
+		    						}
+	    					}else{
+	    						if(rows.length==0){
 	    							$.messager.alert('消息提示','请选择修改行！','info',function(){
+	    			    				//$('#form1').form('clear');
+	    			    			});
+	    						}else{
+	    							$.messager.alert('消息提示','请选择单行修改！','info',function(){
 	    			    				//$('#form1').form('clear');
 	    			    			});
 	    						}
 	    					}
+	    					
+	    				}
 	    			},'-',{
 	    				iconCls: 'icon-remove',
 	    				text:'撤销投诉',
@@ -118,22 +132,36 @@ $(function(){
 	    				}
 	    			},'-',{
 	    				iconCls: 'icon-tip',
-	    				text:'产看结果明细',
+	    				text:'查看结果明细',
 	    				handler: function(){
-	    					var row  = $('#dg').datagrid('getSelected');
-	    					//console.log(row)
-	    						if(row!=null){
-	    							$('#win4').window('open');
-	    							$('#form4').form('load',{
-	    								cid4:row.cid,
-	    								cresult4:row.cresult,
-	    							});
-	    						}else{
+	    					var rows  = $('#dg').datagrid('getSelections');
+	    					if(rows.length==1){
+	    						var row  = $('#dg').datagrid('getSelected');
+		    					//console.log(row)
+		    						if(row!=null){
+		    							$('#win4').window('open');
+		    							$('#form4').form('load',{
+		    								cid4:row.cid,
+		    								cresult4:row.cresult,
+		    							});
+		    						}else{
+		    							$.messager.alert('消息提示','请选择查看行！','info',function(){
+		    			    				//$('#form1').form('clear');
+		    			    			});
+		    						}
+	    					}else{
+	    						if(rows.length==0){
 	    							$.messager.alert('消息提示','请选择查看行！','info',function(){
+	    			    				//$('#form1').form('clear');
+	    			    			});
+	    						}else{
+	    							$.messager.alert('消息提示','请选择单行查看！','info',function(){
 	    			    				//$('#form1').form('clear');
 	    			    			});
 	    						}
 	    					}
+	    					
+	    				}
 	    			}
 	    			]
 	    		});

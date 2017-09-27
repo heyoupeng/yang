@@ -30,5 +30,10 @@ public class EstatePersonServiceImple implements EstatePersonService{
 		boolean flag=epdao.deleteEstatePersonByObj(e);
 		return flag;
 	}
+	@Override
+	public boolean addEstatePersonByObjNoPhone(Estate e) {
+		boolean flag=epdao.insertEstatePersonByObjNoPhone(e);
+		return flag;
+	}
 
 }

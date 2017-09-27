@@ -12,6 +12,12 @@ public interface EstatePersonDao {
 	 */
 	public boolean insertEstatePersonByObj(Estate e);
 	/**
+	 * 新物业人员插入数据库
+	 * @param e 员工对象
+	 * @return
+	 */
+	public boolean insertEstatePersonByObjNoPhone(Estate e);
+	/**
 	 * 按条件查询数据库
 	 * @param e 查询的对象
 	 * @return

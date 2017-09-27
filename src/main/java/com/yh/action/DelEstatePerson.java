@@ -25,7 +25,7 @@ public class DelEstatePerson extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf8");
 		resp.setCharacterEncoding("utf8");
-		System.out.println("time to delete..");
+		//System.out.println("time to delete..");
 		String[]  enos= req.getParameterValues("enos[]");
 		//删除
 		boolean flag=false;

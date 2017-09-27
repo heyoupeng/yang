@@ -51,13 +51,16 @@ public class SubmitComplaint extends HttpServlet {
 		String DeadLine = cendtime.concat(currentTime.substring(10));
 
 		Complaint c = new Complaint();
-		c.setOid(oid);
-		c.setMno(Integer.parseInt(mno));
-		c.setCremark(cremark);
-		c.setCstarttime(currentTime);
-		c.setCendtime(DeadLine);
 		// 插入数据库
-		boolean flag = cs.insertComplaintByObj(c);
+		boolean flag=false;
+		if(mno!=""&&cremark!=""&&cendtime!=""){
+				c.setOid(oid);
+				c.setMno(Integer.parseInt(mno));
+				c.setCremark(cremark);
+				c.setCstarttime(currentTime);
+				c.setCendtime(DeadLine);
+				flag = cs.insertComplaintByObj(c);
+		}
 		// 拼接写回，一定的格式不能变
 		JSONObject j = new JSONObject();
 		PrintWriter pw = resp.getWriter();

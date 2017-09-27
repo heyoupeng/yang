@@ -25,6 +25,12 @@ public interface ComplaintDao {
 	 */
 	public boolean insertComplaintByObj(Complaint c);
 	/**
+	 * 新的投诉插入数据库
+	 * @param c
+	 * @return
+	 */
+	public boolean insertComplaintByObjNoEndtime(Complaint c);
+	/**
 	 * 更新投诉数据库表
 	 * @param c
 	 * @return
