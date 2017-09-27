@@ -134,5 +134,29 @@ public class EstatePersonDaoImple implements EstatePersonDao{
 		return flag;
 
 	}
+	@Override
+	public boolean insertEstatePersonByObjNoPhone(Estate es) {
+		boolean flag=false;
+		Connection con = MyConnection.getConnection();
+		StringBuffer bf = new StringBuffer("insert into estateperson_info(E_name,E_id,E_starttime) ");
+		bf.append("VALUES(?,?,?) ");
+		try {
+			PreparedStatement pst = con.prepareStatement(bf.toString());
+			pst.setString(1, es.getEname());
+			pst.setString(2, es.getEid());
+			pst.setString(3, es.getCurrentTime());
+			int  rs = pst.executeUpdate();
+			if(rs==1){
+				flag=true;
+			}
+			else{
+				flag=false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
 
 }

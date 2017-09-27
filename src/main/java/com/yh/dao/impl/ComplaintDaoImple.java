@@ -329,4 +329,30 @@ public class ComplaintDaoImple implements ComplaintDao{
 		return map;
 	}
 
+	@Override
+	public boolean insertComplaintByObjNoEndtime(Complaint c) {
+		boolean flag=false;
+		Connection con = MyConnection.getConnection();
+		StringBuffer bf = new StringBuffer("insert into complant_info(O_ownerId,M_no,C_remark,C_starttime) ");
+		bf.append("VALUES(?,?,?,?) ");
+		try {
+			PreparedStatement pst = con.prepareStatement(bf.toString());
+			pst.setInt(1, c.getOid());
+			pst.setInt(2, c.getMno());
+			pst.setString(3, c.getCremark());
+			pst.setString(4, c.getCstarttime());
+			int  rs = pst.executeUpdate();
+			if(rs==1){
+				flag=true;
+			}
+			else{
+				flag=false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 }

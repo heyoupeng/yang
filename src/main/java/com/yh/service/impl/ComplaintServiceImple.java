@@ -66,4 +66,10 @@ public class ComplaintServiceImple implements ComplaintService{
 		return flag;
 	}
 
+	@Override
+	public boolean insertComplaintByObjNoEndtime(Complaint c) {
+		boolean flag=cdao.insertComplaintByObjNoEndtime(c);
+		return flag;
+	}
+
 }
